@@ -20,7 +20,10 @@ def is_logged_in():
 
 
 def clearance():
-    return session.get("clearance_level")
+    if session.get("clearance_level") is None:
+        return -1
+    else:
+        return session.get("clearance_level")
 
 
 def connect_database(db_file):
@@ -107,3 +110,19 @@ def render_login():  # put application's code here
 def logout():  # put application's code here
     session.clear()
     return redirect("/?message = see+you+next+time")
+
+
+@app.route('/dinos')
+def render_dinos():  # put application's code here
+    con = connect_database(DATABASE)
+    query = "SELECT * FROM dinosaurs WHERE clearance_required <= ?"
+    query_user = "SELECT * FROM user"
+    cur = con.cursor()
+    cur.execute(query, (clearance(), ))
+    dino_list = cur.fetchall()
+    cur.execute(query_user)
+    user_list = cur.fetchall()
+    con.close()
+    return render_template('dinosaurs.html', list_of_dinosaurs=dino_list, list_of_users=user_list, logged_in=is_logged_in(), access=clearance())
+
+

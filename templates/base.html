@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Dinosaurs of Isla Nublar | home</title>
+    <title>Jurassic Park | home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"/>
@@ -13,10 +13,10 @@
 <body>
 <nav>
     <div class="container">
-        <div class="navbar-brand">Dinosaurs of Isla Nublar</div>
+        <div class="navbar-brand">Jurassic Park</div>
         <div class="navbar-links">
             <a href="/">Home</a>
-            <a href="/menu">Dinosaurs</a>
+            <a href="/dinos">Dinosaurs</a>
             {% if logged_in == True %}
                 <a href="/logout">Logout</a>
                 {% if clearance > 3 %}
@@ -30,7 +30,7 @@
 </nav>
 <div class="container">
     <header>
-        <h1>Dinosaurs of Isla Nublar</h1>
+        <h1>Jurassic Park</h1>
         <h2>{% block pageheading %}{% endblock %}</h2>
     </header>
 
@@ -41,4 +41,10 @@
 </div>
 </body>
 
+<footer>
+    <div>
+        <h3>InGen</h3>
+        <h3>We Make The Future</h3>
+    </div>
+</footer>
 </html>
