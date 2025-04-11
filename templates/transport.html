@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block pageheading %}Log a relocation{% endblock %}
+
+{% block main %}
+    <form class="myform" method = 'post'>
+        <div class="form-group">
+            <div class="form-label">Species: </div>
+            <div class="form-element">
+                <select id="select_dinosaur" name="select_dinosaur">
+                    {% for dino in list_of_dinosaurs %}
+                        <option value="{{ dino[0], dino[1] }}">{{ dino[1] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-label">New Location: </div>
+            <div class="form-element"><input type="text" name="place" required></div>
+        </div>
+        <div class="form-group">
+            <div class="form-label">Date: </div>
+            <div class="form-element"> <input type="date" name="date" required></div>
+        </div>
+        <div class="form-group">
+            <div class="form-label">Time: </div>
+            <div class="form-element"> <input type="time" name="time" required></div>
+        </div>
+        <div class="form-group">
+            <div class="form-label"></div>
+            <div class="form-element"> <input type="submit" value="Schedule"></div>
+        </div>
+    </form>
+    <br>
+    <br>
+    <br>
+    <h3>Delete a session</h3>
+    <form class="myform" method="post" action="delete_session">
+        <div class="form-group">
+            <div class="form-label" for="user_email"> Session Info: </div>
+            <div class="form-element">
+                <select id="select_session" name="select_session">
+                    {% for record in session_list %}
+                        <option value="{{ record[0], record[1], record[2], record[4] }}">{{ record[4] }} on the {{ record[1] }} in {{ record[2] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-label"> </div>
+            <div class="form-element"> <input type="submit" value="Sumbit"> </div>
+        </div>
+    </form>
+{% endblock %}

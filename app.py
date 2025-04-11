@@ -92,7 +92,7 @@ def render_login():  # put application's code here
             first_name = user_info[1]
             user_password = user_info[2]
             clearance_level = user_info[3]
-        except IndexError:
+        except:
             return redirect('/login?error=email+or+password+incorrect')
         if not bcrypt.check_password_hash(user_password, password):
             return redirect('/login?error=email+or+password+incorrect')
@@ -123,6 +123,41 @@ def render_dinos():  # put application's code here
     cur.execute(query_user)
     user_list = cur.fetchall()
     con.close()
-    return render_template('dinosaurs.html', list_of_dinosaurs=dino_list, list_of_users=user_list, logged_in=is_logged_in(), access=clearance())
+    return render_template('dinosaurs.html', list_of_dinosaurs=dino_list, list_of_users=user_list, logged_in=is_logged_in(), access_level=clearance())
 
+
+@app.route('/transport', methods=['POST', 'GET'])
+def render_transport():  # put application's code here
+    if not is_logged_in():
+        return redirect("/menu")
+    if not clearance() >= 3:
+        return redirect("/menu")
+    con = connect_database(DATABASE)
+    query_transport = "SELECT * FROM transport_log"
+    cur = con.cursor()
+    cur.execute(query_transport)
+    transport_list = cur.fetchall()
+    query_dinos = "SELECT * FROM dinosaurs WHERE clearance_required <= ?"
+    cur.execute(query_dinos, (clearance(),))
+    dino_list = cur.fetchall()
+    if request.method == 'POST':
+        con = connect_database(DATABASE)
+        query_tutor_email = "SELECT user_id, email FROM user WHERE tutor = true"
+        cur = con.cursor()
+        cur.execute(query_tutor_email)
+        tutor_list = cur.fetchall()
+        query_tutee_email = "SELECT user_id, email FROM user WHERE tutor = false"
+        cur.execute(query_tutee_email)
+        tutee_list = cur.fetchall()
+        fk_dino_id = request.form.get('subject').title().strip()
+        new_location = request.form.get('place').title().strip()
+        time = request.form.get('time')
+        date = request.form.get('date')
+
+        query_insert = "INSERT INTO transport_log (fk_dino_id, date, time, new_location) VALUES (?, ?, ?, ?)"
+        cur = con.cursor()
+        cur.execute(query_insert, (dino_id, date, time, location))
+        con.commit()
+        con.close()
+    return render_template('transport.html', logged_in=is_logged_in(), access_level=clearance(), transport_list=transport_list, list_of_dinosaurs=dino_list)
 

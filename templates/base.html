@@ -19,7 +19,7 @@
             <a href="/dinos">Dinosaurs</a>
             {% if logged_in == True %}
                 <a href="/logout">Logout</a>
-                {% if clearance > 3 %}
+                {% if access_level > 3 %}
                     <a href="/admin_signup">Signup</a>
                 {% endif %}
             {% else %}

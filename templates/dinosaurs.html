@@ -2,8 +2,8 @@
 
 {% block pageheading %}
 The Dinosaurs Of Isla Nublar
-{% if access >= 3 %}
-    <p>Relocating a dinosaur? <a href="/schedule">Click here!</a> </p>
+{% if access_level >= 3 %}
+    <p>Relocating a dinosaur? <a href="/transport">Click here!</a> </p>
 {% endif %}
    <div class="categories">
         {% for diet in list_of_diets %}
