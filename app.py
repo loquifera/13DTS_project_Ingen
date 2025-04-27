@@ -142,21 +142,17 @@ def render_transport():  # put application's code here
     dino_list = cur.fetchall()
     if request.method == 'POST':
         con = connect_database(DATABASE)
-        query_tutor_email = "SELECT user_id, email FROM user WHERE tutor = true"
-        cur = con.cursor()
-        cur.execute(query_tutor_email)
-        tutor_list = cur.fetchall()
-        query_tutee_email = "SELECT user_id, email FROM user WHERE tutor = false"
-        cur.execute(query_tutee_email)
-        tutee_list = cur.fetchall()
-        fk_dino_id = request.form.get('subject').title().strip()
-        new_location = request.form.get('place').title().strip()
+        fk_dino_id = request.form.get('select_dinosaur').strip("(,)")
+        fk_dino_id = fk_dino_id.split()
+        new_location = request.form.get('place').strip()
         time = request.form.get('time')
         date = request.form.get('date')
 
-        query_insert = "INSERT INTO transport_log (fk_dino_id, date, time, new_location) VALUES (?, ?, ?, ?)"
+        query_transport_insert = "INSERT INTO transport_log (fk_dino_id, date, time, new_location) VALUES (?, ?, ?, ?)"
         cur = con.cursor()
-        cur.execute(query_insert, (dino_id, date, time, location))
+        cur.execute(query_transport_insert, (fk_dino_id[0], date, time, new_location))
+        query_dino_insert = "UPDATE dinosaurs SET location = ? WHERE dino_id = ?;"
+        cur.execute(query_dino_insert, (new_location, fk_dino_id[0]))
         con.commit()
         con.close()
     return render_template('transport.html', logged_in=is_logged_in(), access_level=clearance(), transport_list=transport_list, list_of_dinosaurs=dino_list)
