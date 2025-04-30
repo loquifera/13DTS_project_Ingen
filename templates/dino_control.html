@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block pageheading %}Log a relocation{% endblock %}
+{% block pageheading %}Log a new Dinosaur{% endblock %}
 
 {% block main %}
     <form class="myform" method = 'post'>
@@ -34,14 +34,14 @@
     <br>
     <br>
     <br>
-    <h3>Delete a transport log</h3>
+    <h3>Delete Dinosaur data</h3>
     <form class="myform" method="post" action="delete_dino">
         <div class="form-group">
-            <div class="form-label" for="user_email"> Transport Info: </div>
+            <div class="form-label" for="user_email"> Dinosaur Info: </div>
             <div class="form-element">
                 <select id="select_session" name="select_session">
-                    {% for record in list_of_transports %}
-                        <option value="{{ record[0], record[1], record[2], record[3], record[4] }}">Relocated {{ record[6] }} to the {{ record[4] }} at {{ record[3] }} on the {{ record[2] }}</option>
+                    {% for record in list_of_dinosaurs %}
+                        <option value="{{ record[0], record[1], record[2], record[3], record[4], record[5], record[7] }}">{{ record[1] }}</option>
                     {% endfor %}
                 </select>
             </div>
