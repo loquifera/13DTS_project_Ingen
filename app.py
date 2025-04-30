@@ -115,17 +115,13 @@ def render_dinos():  # put application's code here
     con = connect_database(DATABASE)
     query = "SELECT * FROM dinosaurs WHERE clearance_required <= ?"
     query_user = "SELECT * FROM user"
-    query_transport = "SELECT * FROM transport_log INNER JOIN dinosaurs ON transport_log.fk_dino_id = dinosaurs.dino_id;"
     cur = con.cursor()
     cur.execute(query, (clearance(), ))
     dino_list = cur.fetchall()
     cur.execute(query_user)
     user_list = cur.fetchall()
-    cur.execute(query_transport)
-    transport_list = cur.fetchall()
-    print(transport_list)
     con.close()
-    return render_template('dinosaurs.html', list_of_dinosaurs=dino_list, list_of_users=user_list, list_of_transports=transport_list, logged_in=is_logged_in(), access_level=clearance())
+    return render_template('dinosaurs.html', list_of_dinosaurs=dino_list, list_of_users=user_list, logged_in=is_logged_in(), access_level=clearance())
 
 
 @app.route('/transport', methods=['POST', 'GET'])
@@ -135,7 +131,7 @@ def render_transport():  # put application's code here
     if not clearance() >= 3:
         return redirect("/menu")
     con = connect_database(DATABASE)
-    query_transport = "SELECT * FROM transport_log"
+    query_transport = "SELECT * FROM transport_log INNER JOIN dinosaurs ON transport_log.fk_dino_id = dinosaurs.dino_id;"
     cur = con.cursor()
     cur.execute(query_transport)
     transport_list = cur.fetchall()
@@ -157,5 +153,5 @@ def render_transport():  # put application's code here
         cur.execute(query_dino_insert, (new_location, fk_dino_id[0].strip(",")))
         con.commit()
         con.close()
-    return render_template('transport.html', logged_in=is_logged_in(), access_level=clearance(), transport_list=transport_list, list_of_dinosaurs=dino_list)
+    return render_template('transport.html', logged_in=is_logged_in(), access_level=clearance(), list_of_transports=transport_list, list_of_dinosaurs=dino_list)
 
