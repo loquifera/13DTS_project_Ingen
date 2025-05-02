@@ -41,6 +41,10 @@ def render_home():  # put application's code here
 
 @app.route('/signup', methods=['POST', 'GET'])
 def render_signup():  # put application's code here
+    """
+
+    :return:
+    """
     if request.method == 'POST':
         fname = request.form.get('user_fname').title().strip()
         lname = request.form.get('user_lname').title().strip()
@@ -72,6 +76,12 @@ def render_signup():  # put application's code here
 
 @app.route('/login', methods=['POST', 'GET'])
 def render_login():  # put application's code here
+    """
+    If the user is already logged in they will be redirected to the home page, if not then it will render the
+    login page, after entering their information it will run the POST section of code.
+    :return: When the POST code is run, if any information is wrong it will redirect them to re-enter their information
+    if the entered password and email are correct then it will update the session to hold the information of the user.
+    """
     if is_logged_in():
         return redirect("/")
     if request.method == 'POST':
@@ -106,12 +116,21 @@ def render_login():  # put application's code here
 
 @app.route('/logout')
 def logout():  # put application's code here
+    """
+    Logs out the user.
+    :return: Sends the user back to the home page.
+    """
     session.clear()
     return redirect("/?message = see+you+next+time")
 
 
 @app.route('/dinos')
 def render_dinos():  # put application's code here
+    """
+    This route gets the data for all dinosaurs that the user has clearance to view then renders the dino page.
+    :return:Returns the information to render the dinosaurs page, list of dinosaurs hold the information from the
+    dinosaurs database and the list of users in a similar fashion.
+    """
     con = connect_database(DATABASE)
     query = "SELECT * FROM dinosaurs WHERE clearance_required <= ?"
     query_user = "SELECT * FROM user"
@@ -127,9 +146,9 @@ def render_dinos():  # put application's code here
 @app.route('/transport', methods=['POST', 'GET'])
 def render_transport():  # put application's code here
     if not is_logged_in():
-        return redirect("/menu")
+        return redirect("/")
     if not clearance() >= 3:
-        return redirect("/menu")
+        return redirect("/")
     con = connect_database(DATABASE)
     query_transport = "SELECT * FROM transport_log INNER JOIN dinosaurs ON transport_log.fk_dino_id = dinosaurs.dino_id;"
     cur = con.cursor()
@@ -154,4 +173,50 @@ def render_transport():  # put application's code here
         con.commit()
         con.close()
     return render_template('transport.html', logged_in=is_logged_in(), access_level=clearance(), list_of_transports=transport_list, list_of_dinosaurs=dino_list)
+
+
+@app.route('/delete_transport', methods=['POST', 'GET'])
+def delete_transport():
+    if not is_logged_in():
+        return redirect('/?message=not+logged+in')
+
+    if request.method == 'POST':
+        chosen_transport = request.form.get('select_transport')
+        chosen_transport = chosen_transport.strip("(")
+        chosen_transport = chosen_transport.strip(")")
+        chosen_transport = chosen_transport.split(", ")
+
+    transport_id = chosen_transport[0]
+    transport_name = chosen_transport[1]
+    return render_template('delete_confim.html', relocation_id=transport_id, name=transport_name, type="transport")
+
+
+@app.route('/dino_control', methods=['POST', 'GET'])
+def render_dino_control():  # put application's code here
+    if not is_logged_in():
+        return redirect("/")
+    if not clearance() >= 3:
+        return redirect("/")
+    con = connect_database(DATABASE)
+    query_dinos = "SELECT * FROM dinosaurs WHERE clearance_required <= ?"
+    cur = con.cursor()
+    cur.execute(query_dinos, (clearance(),))
+    dino_list = cur.fetchall()
+    if request.method == 'POST':
+        con = connect_database(DATABASE)
+        fk_dino_id = request.form.get('select_dinosaur').strip("()")
+        fk_dino_id = fk_dino_id.split()
+        new_location = request.form.get('place').strip()
+        time = request.form.get('time')
+        date = request.form.get('date')
+
+        query_transport_insert = "INSERT INTO transport_log (fk_dino_id, date, time, new_location) VALUES (?, ?, ?, ?)"
+        cur = con.cursor()
+        cur.execute(query_transport_insert, (fk_dino_id[0].strip(","), date, time, new_location))
+        query_dino_insert = "UPDATE dinosaurs SET location = ? WHERE dino_id = ?;"
+        cur.execute(query_dino_insert, (new_location, fk_dino_id[0].strip(",")))
+        con.commit()
+        con.close()
+    return render_template('transport.html', logged_in=is_logged_in(), access_level=clearance(), list_of_dinosaurs=dino_list)
+
 
