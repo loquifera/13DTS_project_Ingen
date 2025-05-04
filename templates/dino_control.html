@@ -6,29 +6,43 @@
     <form class="myform" method = 'post'>
         <div class="form-group">
             <div class="form-label">Species: </div>
+            <div class="form-element"><input type="text" name="species" required></div>
+        </div>
+        <div class="form-group">
+            <div class="form-label">Diet: </div>
             <div class="form-element">
-                <select id="select_dinosaur" name="select_dinosaur">
-                    {% for dino in list_of_dinosaurs %}
-                        <option value="{{ dino[0], dino[1] }}">{{ dino[1] }}</option>
+                <select id="select_diet" name="select_diet">
+                    <option value="Carnivore">Carnivore</option>
+                    <option value="Herbivore">Herbivore</option>
+                    <option value="Omnivore">Omnivore</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-label">Location: </div>
+            <div class="form-element"><input type="text" name="place" required></div>
+        </div>
+        <div class="form-group">
+            <div class="form-label">Information: </div>
+            <div class="form-element"><input type="text" name="info" required></div>
+        </div>
+        <div class="form-group">
+            <div class="form-label">Living Specimens: </div>
+            <div class="form-element"> <input type="text" name="specimens" required></div>
+        </div>
+        <div class="form-group">
+            <div class="form-label">Clearance Required: </div>
+            <div class="form-element">
+                <select id="select_clearance" name="select_clearance">
+                    {% for number in range(0, access_level) %}
+                        <option value="{{ number }}">{{ number }}</option>
                     {% endfor %}
                 </select>
             </div>
         </div>
         <div class="form-group">
-            <div class="form-label">New Location: </div>
-            <div class="form-element"><input type="text" name="place" required></div>
-        </div>
-        <div class="form-group">
-            <div class="form-label">Date: </div>
-            <div class="form-element"> <input type="date" name="date" required></div>
-        </div>
-        <div class="form-group">
-            <div class="form-label">Time: </div>
-            <div class="form-element"> <input type="time" name="time" required></div>
-        </div>
-        <div class="form-group">
             <div class="form-label"></div>
-            <div class="form-element"> <input type="submit" value="Schedule"></div>
+            <div class="form-element"> <input type="submit" value="Log Dinosaur"></div>
         </div>
     </form>
     <br>

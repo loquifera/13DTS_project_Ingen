@@ -204,17 +204,17 @@ def render_dino_control():  # put application's code here
     dino_list = cur.fetchall()
     if request.method == 'POST':
         con = connect_database(DATABASE)
-        fk_dino_id = request.form.get('select_dinosaur').strip("()")
-        fk_dino_id = fk_dino_id.split()
-        new_location = request.form.get('place').strip()
-        time = request.form.get('time')
-        date = request.form.get('date')
+        species = request.form.get('species').strip()
+        diet = request.form.get('select_diet').strip("()")
+        location = request.form.get('place').strip()
+        info = request.form.get('info')
+        specimen = request.form.get('specimens').strip()
+        image = request.form.get('image')
+        chosen_clearance = request.form.get('select_clearance').strip("()")
 
-        query_transport_insert = "INSERT INTO transport_log (fk_dino_id, date, time, new_location) VALUES (?, ?, ?, ?)"
+        query_insert = "INSERT INTO dinosaurs (species, diet, location, information, living_specimens, image, clearance_required) VALUES (?, ?, ?, ?, ?, ?, ?)"
         cur = con.cursor()
-        cur.execute(query_transport_insert, (fk_dino_id[0].strip(","), date, time, new_location))
-        query_dino_insert = "UPDATE dinosaurs SET location = ? WHERE dino_id = ?;"
-        cur.execute(query_dino_insert, (new_location, fk_dino_id[0].strip(",")))
+        cur.execute(query_insert, (species, diet, location, info, specimen, image, chosen_clearance))
         con.commit()
         con.close()
     return render_template('transport.html', logged_in=is_logged_in(), access_level=clearance(), list_of_dinosaurs=dino_list)
