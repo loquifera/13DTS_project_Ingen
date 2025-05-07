@@ -186,9 +186,7 @@ def delete_transport():
         chosen_transport = chosen_transport.strip(")")
         chosen_transport = chosen_transport.split(", ")
 
-    transport_id = chosen_transport[0]
-    transport_name = chosen_transport[1]
-    return render_template('delete_confim.html', relocation_id=transport_id, name=transport_name, type="transport")
+    return render_template('delete_confirm.html', name=str("Relocated " + chosen_transport[4].strip("'") + " to the " + chosen_transport[3].strip("'") + " at " + chosen_transport[2].strip("'") + " on the " + chosen_transport[1].strip("'")), type="transport log")
 
 
 @app.route('/dino_control', methods=['POST', 'GET'])

@@ -3,8 +3,11 @@
 {% block pageheading %}Confirm Deletion of {{ type }}{% endblock %}
 
 {% block main %}
-    <h3> Are you sure you want to delete {{ type }} {{ name }}?
+    <h3> Are you sure you want to delete {{ type }} - {{ name.strip("(,)") }}?
+        <br>
         <a href="delete_{{ type }}_confirm/{{ relocation_id }}">Yes</a>
+        <br>
+        <br>
         <a href="/schedule">No</a>
     </h3>
 {% endblock %}
