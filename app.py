@@ -172,13 +172,16 @@ def render_transport():  # put application's code here
         cur.execute(query_dino_insert, (new_location, fk_dino_id[0].strip(",")))
         con.commit()
         con.close()
+        return redirect('/transport')
     return render_template('transport.html', logged_in=is_logged_in(), access_level=clearance(), list_of_transports=transport_list, list_of_dinosaurs=dino_list)
 
 
 @app.route('/delete_transport', methods=['POST', 'GET'])
 def delete_transport():
     if not is_logged_in():
-        return redirect('/?message=not+logged+in')
+        return redirect("/")
+    if not clearance() >= 3:
+        return redirect("/")
 
     if request.method == 'POST':
         chosen_transport = request.form.get('select_transport')
@@ -186,8 +189,22 @@ def delete_transport():
         chosen_transport = chosen_transport.strip(")")
         chosen_transport = chosen_transport.split(", ")
 
-    return render_template('delete_confirm.html', name=str("Relocated " + chosen_transport[4].strip("'") + " to the " + chosen_transport[3].strip("'") + " at " + chosen_transport[2].strip("'") + " on the " + chosen_transport[1].strip("'")), type="transport log")
+    return render_template('delete_confirm.html', table_id=chosen_transport[0], name=str("Relocated " + chosen_transport[4].strip("'") + " to the " + chosen_transport[3].strip("'") + " at " + chosen_transport[2].strip("'") + " on the " + chosen_transport[1].strip("'")), type="log")
 
+
+@app.route('/delete_log_confirm/<table_id>')
+def delete_transport_confirm(table_id):
+    if not is_logged_in():
+        return redirect("/")
+    if not clearance() >= 3:
+        return redirect("/")
+    con = connect_database(DATABASE)
+    query = "DELETE FROM transport_log WHERE relocation_id=?"
+    cur = con.cursor()
+    cur.execute(query,(table_id, ))
+    con.commit()
+    con.close()
+    return redirect('/transport')
 
 @app.route('/dino_control', methods=['POST', 'GET'])
 def render_dino_control():  # put application's code here
@@ -218,3 +235,32 @@ def render_dino_control():  # put application's code here
     return render_template('transport.html', logged_in=is_logged_in(), access_level=clearance(), list_of_dinosaurs=dino_list)
 
 
+@app.route('/delete_dino', methods=['POST', 'GET'])
+def delete_dino():
+    if not is_logged_in():
+        return redirect("/")
+    if not clearance() >= 3:
+        return redirect("/")
+
+    if request.method == 'POST':
+        chosen_dino = request.form.get('select_dino')
+        chosen_dino = chosen_dino.strip("(")
+        chosen_dino = chosen_dino.strip(")")
+        chosen_dino = chosen_dino.split(", ")
+
+    return render_template('delete_confirm.html', table_id=chosen_dino[0], name=chosen_dino[1], type="dinosaur")
+
+
+@app.route('/delete_dinosaur_confirm/<table_id>')
+def delete_dino_confirm(table_id):
+    if not is_logged_in():
+        return redirect("/")
+    if not clearance() >= 3:
+        return redirect("/")
+    con = connect_database(DATABASE)
+    query = "DELETE FROM dinosaurs WHERE dino_id=?"
+    cur = con.cursor()
+    cur.execute(query,(table_id, ))
+    con.commit()
+    con.close()
+    return redirect('/dino_control')
