@@ -11,6 +11,10 @@ app.secret_key = "project_dominus"
 
 
 def is_logged_in():
+    """
+    This function simply tests to see if the user is logged in
+    :return: It will return true or false based on if the user is logged in or not
+    """
     if session.get("user_id") is None:
         return False
     else:
@@ -18,6 +22,10 @@ def is_logged_in():
 
 
 def clearance():
+    """
+    Similarly to the logged in function this will test to see the users clearance level which is used to give them access to various sections of the website
+    :return: If they aren't logged in it will return -1 which means they have no clearance and can barely use the website but othewise will return an integer of the users clearance.
+    """
     if session.get("clearance_level") is None:
         return -1
     else:
@@ -25,6 +33,11 @@ def clearance():
 
 
 def connect_database(db_file):
+    """
+    This function starts a connection to my database
+    :param db_file: This is the database file the function will try to connect to.
+    :return: Returns the connection top the database so that it can be used.
+    """
     try:
         connection = sqlite3.connect(db_file)
         return connection
@@ -36,6 +49,9 @@ def connect_database(db_file):
 
 @app.route('/')
 def render_home():  # put application's code here
+    """
+    :return:Renders the home page with the users access level and if they are logged in or not
+    """
     return render_template('home.html', logged_in=is_logged_in(), access_level=clearance())
 
 
@@ -62,7 +78,7 @@ def render_signup():  # put application's code here
         if len(password) < 8:
             return redirect('/signup?error=password+must+be+over+eight+characters', logged_in=is_logged_in())
 
-        hashed_password = bcrypt.generate_password_hash(password)
+        hashed_password = bcrypt.generate_password_hash(password)  # This line uses the Bcrypt 
 
         con = connect_database(DATABASE)
         query_insert = "INSERT INTO user (first_name, surname, email, password, clearance_level) VALUES (?, ?, ?, ?, ?)"
@@ -232,7 +248,8 @@ def render_dino_control():  # put application's code here
         cur.execute(query_insert, (species, diet, location, info, specimen, image, chosen_clearance))
         con.commit()
         con.close()
-    return render_template('transport.html', logged_in=is_logged_in(), access_level=clearance(), list_of_dinosaurs=dino_list)
+        return redirect('/dino_control')
+    return render_template('dino_control.html', logged_in=is_logged_in(), access_level=clearance(), list_of_dinosaurs=dino_list)
 
 
 @app.route('/delete_dino', methods=['POST', 'GET'])
@@ -248,7 +265,7 @@ def delete_dino():
         chosen_dino = chosen_dino.strip(")")
         chosen_dino = chosen_dino.split(", ")
 
-    return render_template('delete_confirm.html', table_id=chosen_dino[0], name=chosen_dino[1], type="dinosaur")
+    return render_template('delete_confirm.html', table_id=chosen_dino[0], name=chosen_dino[1].strip("'"), type="dinosaur")
 
 
 @app.route('/delete_dinosaur_confirm/<table_id>')
