@@ -34,7 +34,7 @@
             <div class="form-label">Clearance Required: </div>
             <div class="form-element">
                 <select id="select_clearance" name="select_clearance">
-                    {% for number in range(0, access_level) %}
+                    {% for number in range(0, (access_level + 1)) %}
                         <option value="{{ number }}">{{ number }}</option>
                     {% endfor %}
                 </select>
