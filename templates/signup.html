@@ -21,11 +21,11 @@
             <div class="form-element"> <input type="password" name="user_password" required></div>
         </div>
         <div class="form-group">
-            <div class="form-label">Password2: </div>
+            <div class="form-label">Confirm Password: </div>
             <div class="form-element"> <input type="password" name="user_password2" required></div>
         </div>
         {% if access_level >= 4 %}
-        <div class="form-element">
+        <div class="form-group">
             <div class="form-label"> Clearance Level: </div>
             <select id="select_session" name="select_session" required>
                 {% for number in range(1, 5) %}

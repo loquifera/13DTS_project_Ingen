@@ -86,7 +86,7 @@ def render_signup():  # put application's code here
         cur.execute(query_insert, (fname, lname, email, hashed_password, access))
         con.commit()
         con.close()
-        return redirect('/')
+        return redirect('/login')
     return render_template('signup.html', logged_in=is_logged_in(), access_level=clearance())
 
 
