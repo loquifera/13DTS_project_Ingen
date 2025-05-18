@@ -48,7 +48,7 @@ def connect_database(db_file):
 
 
 @app.route('/')
-def render_home():  # put application's code here
+def render_home():
     """
     :return:Renders the home page with the users access level and if they are logged in or not
     """
@@ -56,10 +56,14 @@ def render_home():  # put application's code here
 
 
 @app.route('/signup', methods=['POST', 'GET'])
-def render_signup():  # put application's code here
+def render_signup():
     """
-
-    :return:
+    This function is how the user signs up to the website to use its features, firstly it just renders the template
+    then once the user has input their information it checks if their passwords match with each other to confirm them
+    then it inserts the information into the database
+    :return: If the passwords are not the same of if the password is shorter than 8 characters then it will redirect the
+    user back to the page with the error message appropriate, once they have corrdctly entered their information
+    it will send them to the log in page so they can log into the website
     """
     if request.method == 'POST':
         fname = request.form.get('user_fname').title().strip()
@@ -91,7 +95,7 @@ def render_signup():  # put application's code here
 
 
 @app.route('/login', methods=['POST', 'GET'])
-def render_login():  # put application's code here
+def render_login():
     """
     If the user is already logged in they will be redirected to the home page, if not then it will render the
     login page, after entering their information it will run the POST section of code.
@@ -118,7 +122,7 @@ def render_login():  # put application's code here
             clearance_level = user_info[3]
         except:
             return redirect('/login?error=email+or+password+incorrect')
-        if not bcrypt.check_password_hash(user_password, password):
+        if not bcrypt.check_password_hash(user_password, password):  # This code is part of the Bcrypt packet and will check if the hashed password and input password are the same
             return redirect('/login?error=email+or+password+incorrect')
 
         session['email'] = email
@@ -131,7 +135,7 @@ def render_login():  # put application's code here
 
 
 @app.route('/logout')
-def logout():  # put application's code here
+def logout():
     """
     Logs out the user.
     :return: Sends the user back to the home page.
@@ -141,7 +145,7 @@ def logout():  # put application's code here
 
 
 @app.route('/dinos')
-def render_dinos():  # put application's code here
+def render_dinos():
     """
     This route gets the data for all dinosaurs that the user has clearance to view then renders the dino page.
     :return:Returns the information to render the dinosaurs page, list of dinosaurs hold the information from the
@@ -160,7 +164,11 @@ def render_dinos():  # put application's code here
 
 
 @app.route('/transport', methods=['POST', 'GET'])
-def render_transport():  # put application's code here
+def render_transport():
+    """
+    This function is for the transport log page, if the user isn't logged in or doesn't have high enough clearance
+    :return:
+    """
     if not is_logged_in():
         return redirect("/")
     if not clearance() >= 3:
@@ -181,9 +189,9 @@ def render_transport():  # put application's code here
         time = request.form.get('time')
         date = request.form.get('date')
 
-        query_transport_insert = "INSERT INTO transport_log (fk_dino_id, date, time, new_location) VALUES (?, ?, ?, ?)"
+        query_transport_insert = "INSERT INTO transport_log (fk_dino_id, date, time, new_location, fk_user_id) VALUES (?, ?, ?, ?, ?)"
         cur = con.cursor()
-        cur.execute(query_transport_insert, (fk_dino_id[0].strip(","), date, time, new_location))
+        cur.execute(query_transport_insert, (fk_dino_id[0].strip(","), date, time, new_location, session.get("user_id")))
         query_dino_insert = "UPDATE dinosaurs SET location = ? WHERE dino_id = ?;"
         cur.execute(query_dino_insert, (new_location, fk_dino_id[0].strip(",")))
         con.commit()
@@ -223,7 +231,7 @@ def delete_transport_confirm(table_id):
     return redirect('/transport')
 
 @app.route('/dino_control', methods=['POST', 'GET'])
-def render_dino_control():  # put application's code here
+def render_dino_control():
     if not is_logged_in():
         return redirect("/")
     if not clearance() >= 3:
@@ -281,3 +289,4 @@ def delete_dino_confirm(table_id):
     con.commit()
     con.close()
     return redirect('/dino_control')
+
