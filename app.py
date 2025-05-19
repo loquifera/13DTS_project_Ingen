@@ -166,8 +166,12 @@ def render_dinos():
 @app.route('/transport', methods=['POST', 'GET'])
 def render_transport():
     """
-    This function is for the transport log page, if the user isn't logged in or doesn't have high enough clearance
-    :return:
+    This function is for the transport log page, if the user isn't logged in or doesn't have high enough clearance they
+    won't be able to access the page. When the user gets to the page they will be able to fill in a new transport log
+    and insert it into the database. They will also be able to select a transport log and delete it from the database.
+    :return: If they aren't logged in or have clearance the user will be redirected to the home page. After inputing the
+    form it will run the POST section of code and will then send the user back to the transport page. If they delete
+    a transport they will be sent to confirm it before it is deleted.
     """
     if not is_logged_in():
         return redirect("/")
@@ -202,6 +206,10 @@ def render_transport():
 
 @app.route('/delete_transport', methods=['POST', 'GET'])
 def delete_transport():
+    """
+    This function will take information from the transport page and clean it up to then go to the delete confirm page
+    :return: Sends the transport log information to the delete confirm page.
+    """
     if not is_logged_in():
         return redirect("/")
     if not clearance() >= 3:
@@ -218,6 +226,14 @@ def delete_transport():
 
 @app.route('/delete_log_confirm/<table_id>')
 def delete_transport_confirm(table_id):
+    """
+    This function deletes a transport log from the transport log table using an id to select the
+    correct entry
+    :param table_id: This variable holds the target table that the function will try to
+    delete the information from.
+    :return: After deleting the log it will send the user back to the transport page if they
+    wanted to delete another log
+    """
     if not is_logged_in():
         return redirect("/")
     if not clearance() >= 3:
@@ -232,6 +248,10 @@ def delete_transport_confirm(table_id):
 
 @app.route('/dino_control', methods=['POST', 'GET'])
 def render_dino_control():
+    """
+
+    :return:
+    """
     if not is_logged_in():
         return redirect("/")
     if not clearance() >= 3:
