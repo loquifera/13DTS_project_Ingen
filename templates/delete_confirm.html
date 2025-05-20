@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 
-{% block pageheading %}Confirm Deletion of {{ type }}{% endblock %}
+{% block pageheading %}Confirm Deletion of {{ type }}{% endblock %} <!-- The type variable contains the, well type of data that is trying to be deleted -->
 
 {% block main %}
-    <h3> Are you sure you want to delete {{ type }} - {{ name.strip("(,)") }}?
+    <h3> Are you sure you want to delete {{ type }} - {{ name.strip("(,)") }}? <!-- Will ask the user if they want to delete the selected data -->
         <br>
-        <a href="delete_{{ type }}_confirm/{{ table_id }}">Yes</a>
+        <a href="delete_{{ type }}_confirm/{{ table_id }}">Yes</a> <!-- Runs code to delete the data -->
         <br>
         <br>
-        <a href="/transport">No</a>
+        <a href="/transport">No</a> <!-- Will send the user back to the transport page -->
     </h3>
 {% endblock %}

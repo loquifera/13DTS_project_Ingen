@@ -17,12 +17,12 @@
         <div class="navbar-links">
             <a href="/">Home</a>
             <a href="/dinos">Dinosaurs</a>
-            {% if logged_in == True %}
+            {% if logged_in == True %} <!-- Will only run if the user is logged in -->
                 <a href="/logout">Logout</a>
-                {% if access_level >= 3 %}
+                {% if access_level >= 3 %} <!-- Will run the code only if the user has high enough access level -->
                     <a href="/signup">Admin-Signup</a>
-                {% endif %}
-            {% else %}
+                {% endif %} <!-- Ends the if statement -->
+            {% else %} <!-- Will only run if the first if statement doesn't (so user not logged in) -->
                 <a href="/login">Login</a>
                 <a href="/signup">Signup</a>
             {% endif %}
@@ -44,7 +44,7 @@
 
 <footer>
     <div>
-        <h3>InGen</h3>
+        <h3>InGen</h3> <!-- Footer text at the bottom of the page -->
         <h3>We Make The Future</h3>
     </div>
 </footer>

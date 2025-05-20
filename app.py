@@ -188,7 +188,7 @@ def render_transport():
     dino_list = cur.fetchall()
     if request.method == 'POST':
         con = connect_database(DATABASE)
-        fk_dino_id = request.form.get('select_dinosaur').strip("()")
+        fk_dino_id = request.form.get('select_dinosaur').strip("()")  # Will get the id from the form and strip the brackets from it
         fk_dino_id = fk_dino_id.split()
         new_location = request.form.get('place').strip()
         time = request.form.get('time')

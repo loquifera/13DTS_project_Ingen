@@ -3,7 +3,7 @@
 {% block pageheading %}Log a new Dinosaur{% endblock %}
 
 {% block main %}
-    <form class="myform" method = 'post'>
+    <form class="myform" method = 'post'> <!-- This is a form for the user to add a new dinosaur to the database -->
         <div class="form-group">
             <div class="form-label">Species: </div>
             <div class="form-element"><input type="text" name="species" required></div>
@@ -11,8 +11,8 @@
         <div class="form-group">
             <div class="form-label">Diet: </div>
             <div class="form-element">
-                <select id="select_diet" name="select_diet">
-                    <option value="Carnivore">Carnivore</option>
+                <select id="select_diet" name="select_diet"> <!-- This is a drop-down box that allows the user to select one of the diet types  -->
+                    <option value="Carnivore">Carnivore</option> <!-- This also means that the data is consistent for this -->
                     <option value="Herbivore">Herbivore</option>
                     <option value="Omnivore">Omnivore</option>
                 </select>
@@ -31,21 +31,21 @@
             <div class="form-element"> <input type="text" name="specimens" required></div>
         </div>
         <div class="form-group">
-            <div class="form-label">Image: </div>
-            <div class="form-element"> <input type="file" name="image" required></div>
+            <div class="form-label">Image: </div> <!-- This will allow the user to select a file to use as the image for the dinosaur -->
+            <div class="form-element"> <input type="file" name="image" required></div> <!-- It will be a button the user can press to open their files -->
         </div>
         <div class="form-group">
             <div class="form-label">Clearance Required: </div>
             <div class="form-element">
                 <select id="select_clearance" name="select_clearance">
-                    {% for number in range(0, (access_level + 1)) %}
+                    {% for number in range(0, (access_level + 1)) %} <!-- Allows the user to selecet the clearence required to view the dinosaur up to their own clearance -->
                         <option value="{{ number }}">{{ number }}</option>
                     {% endfor %}
                 </select>
             </div>
         </div>
         <div class="form-group">
-            <div class="form-label"></div>
+            <div class="form-label"></div> <!-- Submits the form -->
             <div class="form-element"> <input type="submit" value="Log Dinosaur"></div>
         </div>
     </form>

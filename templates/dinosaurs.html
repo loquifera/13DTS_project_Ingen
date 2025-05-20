@@ -6,8 +6,8 @@ The Dinosaurs Of Isla Nublar
     <p>Relocating a dinosaur? <a href="/transport">Click here</a> </p>
     <p>Adding or removing a dinosaur? <a href="/dino_control">Click here</a> </p>
 {% endif %}
-   <div class="categories">
-        {% for diet in list_of_diets %}
+    <div class="categories"> <!-- Unused code -->
+        {% for diet in list_of_diets %} <!-- This a for loop like in python where it will run once for each piece of data in list_of_diets -->
             <li> <a href="/dinos/{{ diet[0] }}"> {{ diet[1] }} </a> </li>
         {% endfor %}
     </div>
@@ -15,14 +15,14 @@ The Dinosaurs Of Isla Nublar
 
 {% block main %}
     <div class = "products">
-        {% for dinosaur in list_of_dinosaurs %}
-            <div class = "product-box">
-                <h3 class = "product-box-heading"> {{ dinosaur[1] }} </h3>
-                <p> <strong> Diet: </strong> {{ dinosaur[2] }} </p>
-                <p> <strong> Location: </strong> {{ dinosaur[3] }} </p>
-                <p> <strong> Number of specimens: </strong> {{ dinosaur[5] }} </p>
-                <p> <strong></strong> <img src="/static/dinosaur_img/{{ dinosaur[6] }}" alt="Missing"></p>
-                <p> <strong> Information: </strong> {{ dinosaur[4] }} </p>
+        {% for dinosaur in list_of_dinosaurs %} <!-- Will run for every dinosaur in the list_of_dinosaur variable -->
+            <div class = "product-box"> <!-- This will display all the information for the dinosaurs in a box -->
+                <h3 class = "product-box-heading"> {{ dinosaur[1] }} </h3> <!-- Name/Species of the dinosaur -->
+                <p> <strong> Diet: </strong> {{ dinosaur[2] }} </p> <!-- Will show the diet of the dinosaur -->
+                <p> <strong> Location: </strong> {{ dinosaur[3] }} </p> <!-- The dinosaurs location, which can be changed by transporting them -->
+                <p> <strong> Number of specimens: </strong> {{ dinosaur[5] }} </p> <!-- Shows the number of living dinosaurs -->
+                <p> <strong></strong> <img src="/static/dinosaur_img/{{ dinosaur[6] }}" alt=" -- REDACTED -- "></p> <!-- Shows the image of the dinosaur and if it doesn't have one or there is an error loading it will display the alt text -->
+                <p> <strong> Information: </strong> {{ dinosaur[4] }} </p> <!-- Holds the information of the dinosaur -->
             </div>
         {% endfor %}
     </div>
