@@ -3,13 +3,14 @@
 {% block pageheading %}Log a relocation{% endblock %}
 
 {% block main %}
-    <form class="myform" method = 'post'>
+    <form class="myform" method = 'post'> <!-- This is a form to schedule a transport log for the user to input
+     all the information -->
         <div class="form-group">
             <div class="form-label">Species: </div>
             <div class="form-element">
                 <select id="select_dinosaur" name="select_dinosaur">
                     {% for dino in list_of_dinosaurs %}
-                        <option value="{{ dino[0], dino[1] }}">{{ dino[1] }}</option>
+                        <option value="{{ dino[0], dino[1] }}">{{ dino[1] }}</option> <!-- Holds the name and id of the dinosaur -->
                     {% endfor %}
                 </select>
             </div>
@@ -35,13 +36,14 @@
     <br>
     <br>
     <h3>Delete a transport log</h3>
-    <form class="myform" method="post" action="delete_transport">
+    <form class="myform" method="post" action="delete_transport"> <!-- This is a form to select a dinosaur to delete -->
         <div class="form-group">
             <div class="form-label" for="user_email"> Transport Info: </div>
             <div class="form-element">
                 <select id="select_transport" name="select_transport">
                     {% for record in list_of_transports %}
                         <option value="{{ record[0], record[2], record[3], record[4], record[6] }}">Relocated {{ record[6] }} to the {{ record[4] }} at {{ record[3] }} on the {{ record[2] }}</option>
+                    <!-- Holds all the transport information to be sent to app.py-->
                     {% endfor %}
                 </select>
             </div>

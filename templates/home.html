@@ -4,6 +4,19 @@
 
 {% block main %}
 <h3>
-<strong><em>Please sign in to access the website's features</em></strong>
+    {% if logged_in == False %}
+        <strong><em>Please sign in to access the website's features</em></strong>
+    {% endif %}
+    {% if access_level == 0 %}
+        <strong><em>Head to the dinosaurs page to view all the wondrous creatures INGEN has managed to resurrect</em></strong>
+    {% endif %}
+    {% if access_level > 0 %}
+        <strong><em>Welcome employee</em></strong>
+        <br>
+        <strong><em>You have been granted access to more information on some of the more classified dinosaurs created here by INGEN</em></strong>
+    {% endif %}
+    {% if access_level >= 3 %}
+        <strong><em>As a trusted employee you have been entrusted the ability to sign up new employees, to do this press admin sign-up</em></strong>
+    {% endif %}
 </h3>
 {% endblock %}

@@ -77,12 +77,13 @@ def render_signup():
             access = 0
 
         if password != password2:
-            return redirect('/signup?error=passwords+do+not+match', logged_in=is_logged_in())
+            return redirect('/signup?error=passwords+do+not+match')
 
         if len(password) < 8:
-            return redirect('/signup?error=password+must+be+over+eight+characters', logged_in=is_logged_in())
+            return redirect('/signup?error=password+must+be+over+eight+characters')
 
-        hashed_password = bcrypt.generate_password_hash(password)  # This line uses the Bcrypt 
+        hashed_password = bcrypt.generate_password_hash(password)  # This line uses the Bcrypt packet to check if the
+        # hashed password is the same as the input password.
 
         con = connect_database(DATABASE)
         query_insert = "INSERT INTO user (first_name, surname, email, password, clearance_level) VALUES (?, ?, ?, ?, ?)"
@@ -137,7 +138,7 @@ def render_login():
 @app.route('/logout')
 def logout():
     """
-    Logs out the user.
+    Logs out the user by clearing the session data.
     :return: Sends the user back to the home page.
     """
     session.clear()
@@ -229,7 +230,7 @@ def delete_transport_confirm(table_id):
     """
     This function deletes a transport log from the transport log table using an id to select the
     correct entry
-    :param table_id: This variable holds the target table that the function will try to
+    :param table_id: This variable holds the target inside the table that the function will try to
     delete the information from.
     :return: After deleting the log it will send the user back to the transport page if they
     wanted to delete another log
@@ -249,8 +250,12 @@ def delete_transport_confirm(table_id):
 @app.route('/dino_control', methods=['POST', 'GET'])
 def render_dino_control():
     """
-
-    :return:
+    This function renders the dinosaur control page, the page allows the user to add a dinosaur to the database and also
+    delete a dinosaur from the database. Upon loading the page if the user isn't logged in or doesn't have high enough
+    clearance they will be redirected to the home page, once loaded the user can select a dinosaur to delete or start
+    entering information for a new dinosaur.
+    :return: Once the form is submitted the POST section of the code will rin and get the information from the form to
+    then insert it into the database to be displayed on the dinosaurs page.
     """
     if not is_logged_in():
         return redirect("/")
@@ -282,6 +287,11 @@ def render_dino_control():
 
 @app.route('/delete_dino', methods=['POST', 'GET'])
 def delete_dino():
+    """
+    Similar to the delete transport function this will get the selected dinosaur and clean up the formatting using
+    strip and split
+    :return: Sends the user to the delete confirm page with the cleaned up list of dinosaur information.
+    """
     if not is_logged_in():
         return redirect("/")
     if not clearance() >= 3:
@@ -298,6 +308,14 @@ def delete_dino():
 
 @app.route('/delete_dinosaur_confirm/<table_id>')
 def delete_dino_confirm(table_id):
+    """
+    This function is called when the user confirms they want to delete a dinosaur and will delete the dinosaur based on
+    the idn provided
+    :param table_id: This is the target id for the dinosaur within the table, this corresponds to the dino_id column of
+    the table
+    :return: Once the website has deleted the information from the database the user will be redirected to the dino
+    control page.
+    """
     if not is_logged_in():
         return redirect("/")
     if not clearance() >= 3:

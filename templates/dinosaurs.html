@@ -2,7 +2,7 @@
 
 {% block pageheading %}
 The Dinosaurs Of Isla Nublar
-{% if access_level >= 3 %}
+{% if access_level >= 3 %} <!-- If the user has high enough clearance then they will be able to access transport and dino_control pages -->
     <p>Relocating a dinosaur? <a href="/transport">Click here</a> </p>
     <p>Adding or removing a dinosaur? <a href="/dino_control">Click here</a> </p>
 {% endif %}
