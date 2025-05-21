@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="917a9e8b-ba8f-40fb-813e-a3e7ca283cee" name="Changes" comment="fixed some stuff">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ingen_db" beforeDir="false" afterPath="$PROJECT_DIR$/Ingen_db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/dino_control.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dino_control.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/dinosaurs.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dinosaurs.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
+    <envs>
+      <env key="FLASK_APP" value="app" />
+    </envs>
+    <option name="myCustomStartScript" value="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))" />
+    <option name="myEnvs">
+      <map>
+        <entry key="FLASK_APP" value="app" />
+      </map>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2vEr2NZPPqPwOEyUgQytymoUxdm" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Flask server.Flask (app.py).executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/LukeC/OneDrive - Wellington College/13DTS/Pycharm_projects/Ingen_project&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\21411\OneDrive - Wellington College\13DTS\Pycharm_projects\Ingen_project\templates" />
+      <recent name="C:\Users\21411\OneDrive - Wellington College\13DTS\Pycharm_projects\Ingen_project\static" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Flask server.Flask (app.py)">
+    <configuration name="Flask (app.py)" type="Python.FlaskServer" temporary="true" nameIsGenerated="true">
+      <module name="flaskProject1" />
+      <option name="target" value="$PROJECT_DIR$/app.py" />
+      <option name="targetType" value="PATH" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration name="flaskProject1" type="Python.FlaskServer">
+      <module name="flaskProject1" />
+      <option name="target" value="$PROJECT_DIR$/app.py" />
+      <option name="targetType" value="PATH" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Flask server.Flask (app.py)" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-PY-241.15989.155" />
+        <option value="bundled-python-sdk-babbdf50b680-7c6932dee5e4-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.15989.155" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="917a9e8b-ba8f-40fb-813e-a3e7ca283cee" name="Changes" comment="" />
+      <created>1743720866423</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1743720866423</updated>
+      <workItem from="1743720867665" duration="2105000" />
+      <workItem from="1743972024243" duration="3095000" />
+      <workItem from="1744162184917" duration="3061000" />
+      <workItem from="1744237178399" duration="3033000" />
+      <workItem from="1744328047944" duration="3084000" />
+      <workItem from="1745787288679" duration="2165000" />
+      <workItem from="1745976552500" duration="2827000" />
+      <workItem from="1746051474974" duration="3067000" />
+      <workItem from="1746142521190" duration="3024000" />
+      <workItem from="1746391953517" duration="2508000" />
+      <workItem from="1746581466442" duration="2643000" />
+      <workItem from="1746656015987" duration="3073000" />
+      <workItem from="1746747594241" duration="2571000" />
+      <workItem from="1746996367283" duration="1971000" />
+      <workItem from="1747110232066" duration="209000" />
+      <workItem from="1747173153691" duration="1014000" />
+      <workItem from="1747186449283" duration="2494000" />
+      <workItem from="1747261160931" duration="1216000" />
+      <workItem from="1747352034297" duration="2690000" />
+      <workItem from="1747533652448" duration="9109000" />
+    </task>
+    <task id="LOCAL-00001" summary="Added the database and all the tables to the database">
+      <created>1743722087584</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1743722087584</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Updated name of the dinosaur tables 'name' column to 'species'">
+      <created>1743722766056</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1743722766056</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Started creating the templates for the pages, created both a visitor and admin signup page">
+      <created>1743975120707</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1743975120707</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Combined the signup pages into one that now supports both admin and visitor signup along with starting to add some of the routes">
+      <created>1744165245325</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1744165245325</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Added more routes and added the dinosaur display page, although I don't have any dinosaur data yet.&#10;Also signed up John Hammond">
+      <created>1744240213234</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1744240213234</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Fixed up some of the transport code and the abiltiy to actually update the location of the dinosaurs">
+      <created>1745789440423</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1745789440423</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Fixed the delete errors I found and commented a few more functions">
+      <created>1746750613103</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1746750613103</updated>
+    </task>
+    <task id="LOCAL-00008" summary="I added lots of dinosaurs to the database">
+      <created>1746999360199</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1746999360200</updated>
+    </task>
+    <task id="LOCAL-00009" summary="fixed some stuff">
+      <created>1747262984106</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1747262984106</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Did some code commenting and added the fk_user_id coloumn to the transport table">
+      <option name="closed" value="true" />
+      <created>1747548750502</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1747548750503</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Added the database and all the tables to the database" />
+    <MESSAGE value="Updated name of the dinosaur tables 'name' column to 'species'" />
+    <MESSAGE value="Started creating the templates for the pages, created both a visitor and admin signup page" />
+    <MESSAGE value="Combined the signup pages into one that now supports both admin and visitor signup along with starting to add some of the routes" />
+    <MESSAGE value="Added more routes and added the dinosaur display page, although I don't have any dinosaur data yet.&#10;Also signed up John Hammond" />
+    <MESSAGE value="Fixed up some of the transport code and the abiltiy to actually update the location of the dinosaurs" />
+    <MESSAGE value="Fixed the delete errors I found and commented a few more functions" />
+    <MESSAGE value="I added lots of dinosaurs to the database" />
+    <MESSAGE value="fixed some stuff" />
+    <MESSAGE value="Did some code commenting and added the fk_user_id coloumn to the transport table" />
+    <option name="LAST_COMMIT_MESSAGE" value="Did some code commenting and added the fk_user_id coloumn to the transport table" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Ingen_project$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1747603763793" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Ingen_project$flaskProject1.coverage" NAME="flaskProject1 Coverage Results" MODIFIED="1746144182535" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>

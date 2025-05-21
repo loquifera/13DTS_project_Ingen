@@ -6,23 +6,23 @@
     <form class="myform" method = 'post'> <!-- A form for the user to input their information to sign up to the website -->
         <div class="form-group">
             <div class="form-label">First Name: </div>
-            <div class="form-element"><input type="text" name="user_fname" required></div>
+            <div class="form-element"><input type="text" name="user_fname" maxlength="30" required></div>
         </div>
         <div class="form-group">
             <div class="form-label">Surname: </div>
-            <div class="form-element"><input type="text" name="user_lname" required></div>
+            <div class="form-element"><input type="text" name="user_lname" maxlength="30" required></div>
         </div>
         <div class="form-group">
             <div class="form-label">Email: </div>
-            <div class="form-element"> <input type="email" name="user_email" required></div> <!-- Email input type means it will only accept text that fits an email (has an @) -->
+            <div class="form-element"> <input type="email" name="user_email" maxlength="100" required></div> <!-- Email input type means it will only accept text that fits an email (has an @) -->
         </div>
         <div class="form-group">
             <div class="form-label">Password: </div>
-            <div class="form-element"> <input type="password" name="user_password" required></div> <!-- Password variable type means the text will be hidden -->
+            <div class="form-element"> <input type="password" name="user_password" maxlength="20" required></div> <!-- Password variable type means the text will be hidden -->
         </div>
         <div class="form-group">
             <div class="form-label">Confirm Password: </div>
-            <div class="form-element"> <input type="password" name="user_password2" required></div>
+            <div class="form-element"> <input type="password" name="user_password2" maxlength="20" required></div>
         </div>
         {% if access_level >= 3 %}
         <div class="form-group">
