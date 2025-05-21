@@ -6,7 +6,7 @@
     <form class="myform" method = 'post'> <!-- This is a form for the user to add a new dinosaur to the database -->
         <div class="form-group">
             <div class="form-label">Species: </div>
-            <div class="form-element"><input type="text" name="species" required></div>
+            <div class="form-element"><input type="text" name="species" maxlength="25" required></div>
         </div>
         <div class="form-group">
             <div class="form-label">Diet: </div>
@@ -32,7 +32,7 @@
         </div>
         <div class="form-group">
             <div class="form-label">Image: </div> <!-- This will allow the user to select a file to use as the image for the dinosaur -->
-            <div class="form-element"> <input type="file" name="image" required></div> <!-- It will be a button the user can press to open their files -->
+            <div class="form-element"> <input type="file" name="image" accept="image/png, image/jpeg, image/webp" required></div> <!-- It will be a button the user can press to open their files -->
         </div>
         <div class="form-group">
             <div class="form-label">Clearance Required: </div>
@@ -52,13 +52,13 @@
     <br>
     <br>
     <br>
-    <h3>Delete Dinosaur data</h3>
-    <form class="myform" method="post" action="delete_dino">
+    <h3>Delete Dinosaur data</h3> <!-- This form is to select a dinosaur to delete -->
+    <form class="myform" method="post" action="delete_dino"> <!-- The action means when the form is selected it will run that route -->
         <div class="form-group">
             <div class="form-label" for="user_email"> Dinosaur Info: </div>
             <div class="form-element">
                 <select id="select_dino" name="select_dino">
-                    {% for record in list_of_dinosaurs %}
+                    {% for record in list_of_dinosaurs %} <!-- This for loop will repeat for each dinosaur in the list_of_dinosaurs variable -->
                         <option value="{{ record[0], record[1], record[2], record[3], record[4], record[5], record[7] }}">{{ record[1] }}</option>
                     {% endfor %}
                 </select>

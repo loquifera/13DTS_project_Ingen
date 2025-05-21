@@ -43,7 +43,7 @@
                 <select id="select_transport" name="select_transport">
                     {% for record in list_of_transports %}
                         <option value="{{ record[0], record[2], record[3], record[4], record[6] }}">Relocated {{ record[6] }} to the {{ record[4] }} at {{ record[3] }} on the {{ record[2] }}</option>
-                    <!-- Holds all the transport information to be sent to app.py-->
+                    <!-- Holds all the transport information to be sent to app.py -->
                     {% endfor %}
                 </select>
             </div>

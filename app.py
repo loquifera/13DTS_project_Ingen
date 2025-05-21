@@ -7,7 +7,7 @@ DATABASE = 'Ingen_db'
 
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
-app.secret_key = "project_dominus"
+app.secret_key = "project_dominus"   # This is the secret key to hash the passwords for privacy
 
 
 def is_logged_in():
@@ -39,7 +39,7 @@ def connect_database(db_file):
     :return: Returns the connection top the database so that it can be used.
     """
     try:
-        connection = sqlite3.connect(db_file)
+        connection = sqlite3.connect(db_file)  # Connects to the database
         return connection
     except Error as e:
         print(e)
@@ -62,7 +62,7 @@ def render_signup():
     then once the user has input their information it checks if their passwords match with each other to confirm them
     then it inserts the information into the database
     :return: If the passwords are not the same of if the password is shorter than 8 characters then it will redirect the
-    user back to the page with the error message appropriate, once they have corrdctly entered their information
+    user back to the page with the error message appropriate, once they have correctly entered their information
     it will send them to the log in page so they can log into the website
     """
     if request.method == 'POST':
@@ -135,7 +135,7 @@ def render_login():
     return render_template('login.html', logged_in=is_logged_in(), access_level=clearance())
 
 
-@app.route('/logout')
+@app.route('/logout_confirm')
 def logout():
     """
     Logs out the user by clearing the session data.
@@ -144,6 +144,13 @@ def logout():
     session.clear()
     return redirect("/?message = see+you+next+time")
 
+
+@app.route('/logout')
+def render_logout_page():
+    """
+    :return:Renders the log-out confirm page with the users access level and if they are logged in or not
+    """
+    return render_template('logout_confirm.html', logged_in=is_logged_in(), access_level=clearance())
 
 @app.route('/dinos')
 def render_dinos():
