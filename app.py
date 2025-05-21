@@ -204,8 +204,8 @@ def render_transport():
         query_transport_insert = "INSERT INTO transport_log (fk_dino_id, date, time, new_location, fk_user_id) VALUES (?, ?, ?, ?, ?)"
         cur = con.cursor()
         cur.execute(query_transport_insert, (fk_dino_id[0].strip(","), date, time, new_location, session.get("user_id")))
-        query_dino_insert = "UPDATE dinosaurs SET location = ? WHERE dino_id = ?;"
-        cur.execute(query_dino_insert, (new_location, fk_dino_id[0].strip(",")))
+        query_dino_update = "UPDATE dinosaurs SET previous_location = location, location = ? WHERE dino_id = ?;"
+        cur.execute(query_dino_update, (new_location, fk_dino_id[0].strip(",")))
         con.commit()
         con.close()
         return redirect('/transport')
