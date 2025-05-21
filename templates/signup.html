@@ -27,7 +27,7 @@
         {% if access_level >= 3 %}
         <div class="form-group">
             <div class="form-label"> Clearance Level: </div>
-            <select id="select_session" name="select_session" required>
+            <select id="clearance_level" name="clearance_level" required>
                 {% for number in range(1, access_level) %} <!-- This allows an admin to grant a new sign-up clearance up to their own level  -->
                     <option value="{{ number }}">{{ number }}</option>
                 {% endfor %}
